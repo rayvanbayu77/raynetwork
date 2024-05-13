@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
                     VALUES ('$username', '$email', '$password')";
             $result = mysqli_query($conn, $sql);
             if ($result) {
-                echo "<script>alert('Selamat, registrasi berhasil!')</script>";
+                echo "<script>alert('Selamat, registrasi berhasil!'); document.location.href = 'login.php';</script>" ;
                 $username = "";
                 $email = "";
                 $_POST['password'] = "";
@@ -36,7 +36,6 @@ if (isset($_POST['submit'])) {
         } else {
             echo "<script>alert('Email Sudah Terdaftar.')</script>";
         }
-         
     } else {
         echo "<script>alert('Password Tidak Sesuai')</script>";
     }
@@ -49,31 +48,42 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/pricing/">
+    <link href="css/pricing.css" rel="stylesheet" >
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet" >
  
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 
-    <link rel="stylesheet" type="text/css" href="style.css">
- 
-    <title>Register</title>
+    <title>Register iVEls</title>
 </head>
 <body>
+
+<header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white  border-bottom shadow-sm">
+        <p class="h5 my-0 me-md-auto fw-normal">iVEls</p>
+    </header>
+
     <div class="container">
         <form action="" method="POST" class="login-email">
-            <p class="login-text" style="font-size: 1.8rem; font-weight: 800;">Register</p>
-            <div class="input-group">
-                <input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
+        <div class="row">
+            <div class="colo-lg-12">
+            <h4>Register</h4>
+                <div class="mb-3">
+                </div>
+            </div>
+        </div>
+        <hr style="margin: 10px;">
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
+            </div>
+            <div class="input-group mb-2">
+                <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
+            </div>
+            <div class="input-group mb-2">
+                <input type="password" class="form-control" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
+            </div>
+            <div class="input-group mb-2">
+                <input type="password" class="form-control" placeholder="Confirm Password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>" required>
             </div>
             <div class="input-group">
-                <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
-            </div>
-            <div class="input-group">
-                <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
-            </div>
-            <div class="input-group">
-                <input type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>" required>
-            </div>
-            <div class="input-group">
-                <button name="submit" class="btn">Register</button>
+                <button name="submit" class="btn btn-primary float-start">Register</button>
             </div>
             <p class="login-register-text">Anda sudah punya akun? <a href="login.php">Login </a></p>
         </form>

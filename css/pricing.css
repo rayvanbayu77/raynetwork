@@ -9,3 +9,16 @@ body {
 .pricing-header {
   max-width: 700px;
 }
+
+.main {
+  background-color: #eee;
+}
+
+table, th, td {
+  border: 1px solid black
+}
+
+.info {
+  background-color: #e7f3fe;
+  border-left: 6px solid #2196F3;
+}

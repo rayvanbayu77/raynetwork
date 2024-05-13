@@ -7,30 +7,6 @@ if (empty($_SESSION['login']))
 
 include "config.php"; 
 
-
-$id = $_GET['id'];
-
-global $conn;
-$sql = $conn->query("SELECT * FROM users WHERE id = $id") or die(mysqli_error($conn));
-$editSql = $sql->fetch_assoc();
-
-if(isset($_POST['submit_edit'])) {
-	$password = md5($_POST['password']);
-	$email =$_POST['email'];
-
-	$sql = $conn->query("UPDATE users SET password = '$password', email = '$email' WHERE id = $id") or die(mysqli_error($conn));
-	if($sql) {
-		echo "
-        <script>alert('Profile diupdate! Silahkan login kembali :)');
-        document.location.href = 'logout.php';
-        </script>";
-	} else {
-		echo "<script>alert('Terjadi kesalahan');
-        document.location.href = 'index.php';
-        </script>";
-	}
-}
-
 ?>
 
 <!doctype html>
@@ -80,27 +56,21 @@ if(isset($_POST['submit_edit'])) {
      <div class="row">
         
         <div class="colo-lg-12">
-          <h4>Edit Profile</h4>
+          <h4>TENTANG KAMI</h4>
+          <hr>
+          <b><p>Latar Belakang : </p></b>
+          <p> &emsp; &emsp; iVEls merupakan sebuah web-application yang dibuat sebagai platform yang menyediakan ruang bagi para programmer untuk memperoleh informasi seputar pemrogramman, terutama untuk bahasa pemrogramman Python, PHP, Java, C++, dan MySQL. Untuk bahasa pemrogramman yang belum tersedia akan menyusul di update yang akan datang.</p>
+          <br>
+          <b><p>Mengapa iVEls ? </p></b>
+          <p> &emsp; &emsp; Kenapa iVEls? Karena iVEls merupakan referensi dari sebuah nama yang spesial bagi developer. Selain itu iVEls juga merupakan cara pengucapan dari pengondisian “if-else” yang merupakan sebuah perintah dasar pada pemrogramman.</p>
           <hr>
           
-          <form action="" method="POST" >
-            
-            <br>
-            <p class="h5 my-0 me-md-auto fw-normal">Password</p>
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Masukkan password baru" name="password" value="">
-            </div>
-            <br>
-            <p class="h5 my-0 me-md-auto fw-normal">Email</p>
-            <div class="input-group">
-                <input type="email" class="form-control" placeholder="Email" name="email" value="<?= $editSql['email']?>">
-            </div>
-            <br>
-        <br>
-            <div class="mb-3">
-              <button type="submit" class="btn btn-primary float-start" name="submit_edit">Simpan</button>
-            </div>
-          </form>
+          <p>Contact : </p>
+          <a href="instagram.com">Instagram</a>
+          <a href="linkedin.com">Linkedin</a>
+          <a href="youtube.com">YouTube</a>
+      
+
         </div>
     </div>
    </main>

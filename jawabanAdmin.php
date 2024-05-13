@@ -7,6 +7,8 @@ include 'config.php';
 if (empty($_SESSION['login']))
 	header("Location: login.php");
 
+if ($_SESSION['username'] != "Admin")
+  header("Location: index.php");
 
   if (isset($_POST['submit_jwbn'])) {
     $isi_jwbn = $_POST['isi_jwbn'];
@@ -25,6 +27,7 @@ if (empty($_SESSION['login']))
             $isi_jwbn = "";
             $username_jwbn = "";
             $user_id = "";
+            
         } else {
                 echo "<script>alert('Terjadi kesalahan.')</script>";
         }
@@ -67,9 +70,9 @@ if (empty($_SESSION['login']))
   <body>
 
     <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white  border-bottom shadow-sm">
-    <a style="color: black; text-decoration: none;" class="h5 my-0 me-md-auto fw-normal" href="about.php">iVEls</a>
+    <a style="color: black; text-decoration: none;" class="h5 my-0 me-md-auto fw-normal" >iVEls</a>
       <nav class="my-2 my-md-0 me-md-3">
-      <a class="w-5 h-5 btn btn-sm btn-primary" type="submit" href="index.php">Home</a>
+      <a class="w-5 h-5 btn btn-sm btn-primary" type="submit" href="indexAdmin.php">Home</a>
       <a class="w-5 h-5 btn btn-sm btn-danger" type="submit" href="logout.php">Log Out</a>
       </nav>
   </header>
@@ -86,7 +89,6 @@ if (empty($_SESSION['login']))
        ?>
        <b><?= $data['username_prtyn'] ?></b> |
           <?= $data['waktu_prtyn'] ?><br>
-          <b>Kategori : </b><?= $data['kategori'] ?><br>
           <?= $data['isi_prtyn'] ?>
        <div class="row">
         <div class="col-lg-12">
@@ -103,7 +105,7 @@ if (empty($_SESSION['login']))
           <input type="hidden" name="user_id" value="<?php echo $_SESSION['id']; ?> " readonly>
           <b>Tulis Jawabanmu</b>
             <div class="mb-3">
-              <textarea name="isi_jwbn" placeholder="Ketikannya tolong diperhatikan yaaa" class="form-control" value="<?php echo $isi_jwbn; ?>" required></textarea>
+              <textarea name="isi_jwbn" class="form-control" value="<?php echo $isi_jwbn; ?>" required></textarea>
             </div>
             <div class="mb-3">
               <input type="submit" class="btn btn-primary float-end" value="Jawab" name="submit_jwbn">
@@ -124,6 +126,7 @@ if (empty($_SESSION['login']))
           <?= $row['username_jwbn'] ?></b> |
           <?= $row['waktu_jwbn'] ?><br>
           <?= $row['isi_jwbn'] ?><br>
+          <a href="hapus_jawaban.php?id=<?= $row['id_jwbn']; ?>">Hapus</a>
         </p>
         <hr>
         <?php endwhile; ?>
